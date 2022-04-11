@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import NavBar from './components/NavBar';
+import Dashboard from './pages/Dashboard'
+import TicketPage from './pages/TicketPage'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <BrowserRouter>
+        <NavBar />
+        <Routes>
+            <Route index path="/" element={<Dashboard />} />
+            <Route path="/ticket" element={<TicketPage/>}/>
+            {/* editMode will allow each record to be selected via id to be edited */}
+            <Route path="/ticket/:id" element={<TicketPage editMode={true} />}/> 
+        </Routes>
+      </BrowserRouter> 
     </div>
-  );
+  )
 }
 
 export default App;
